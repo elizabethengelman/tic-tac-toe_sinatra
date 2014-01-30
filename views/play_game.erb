@@ -1,6 +1,6 @@
 The board is numbered as follows:<br><br>
-<%=@board.display_example_board%><br><br>
-
+<%=@browser_game_loop.board.display_example_board%>
+<br><br>
 <%if @first_or_second == "first"%>
 	Which mark would you like to use?
 	<form>
@@ -9,6 +9,8 @@ The board is numbered as follows:<br><br>
 	</form>	
 <%else%>
 	The computer is playing!
+	<br><br>
+	<%=@browser_game_loop.board.display_board%>
 <%end%>
 <br>
 

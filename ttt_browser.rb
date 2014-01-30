@@ -18,11 +18,10 @@ get '/start_game' do
 end
 
 post '/play_game' do
-	@board = Board.new
 	@first_or_second = params[:first_or_second]
 	@browser_user_interface = BrowserUserInterface.new
 	@game = Game.new(@browser_user_interface)
-	@browser_game_loop = BrowserGameLoop.new(@browser_user_interface, @game, @board)
+	@browser_game_loop = BrowserGameLoop.new(@browser_user_interface, @game)
 	@browser_game_loop.play_game(@first_or_second)
 	erb :play_game 
 end
