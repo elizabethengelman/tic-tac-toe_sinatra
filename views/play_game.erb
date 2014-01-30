@@ -1,1 +1,15 @@
-test
+The board is numbered as follows:<br><br>
+<%=@board.display_example_board%><br><br>
+
+<%if @first_or_second == "first"%>
+	Which mark would you like to use?
+	<form>
+		<input type="text" name="mark">
+		<input type="submit">
+	</form>	
+<%else%>
+	The computer is playing!
+<%end%>
+<br>
+
+<%=@first_or_second%>

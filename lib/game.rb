@@ -19,6 +19,7 @@ class Game
     @user_interface.print_out("The board is numbered as follows.")
     @user_interface.print_out(@board.print_example_board)
   end
+  
   def print_board
     @user_interface.print_out(@board.print_board)
   end
@@ -26,7 +27,7 @@ class Game
   def take_a_turn(player) 
     move = player.player_turn
     @board.update_board(move[0],move[1])
-    print_board #this should not be a part of take_a_turn??
+    # print_board #this should not be a part of take_a_turn??
   end
   
   def in_progress?

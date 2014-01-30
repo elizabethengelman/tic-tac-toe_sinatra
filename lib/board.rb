@@ -1,7 +1,7 @@
 require 'pry'
 class Board
   SPACE = " "
-	attr_reader :board #is this necessary?
+	attr_reader :board
 	attr_reader :possible_wins
   
 	def initialize
@@ -27,6 +27,14 @@ class Board
   	]
   end
 
+  def display_board
+      "#{@board[1]} | #{@board[2]} | #{@board[3]} <br>
+      _______<br>
+      #{@board[4]} | #{@board[5]} | #{@board[6]}<br>
+      _______<br>
+      #{@board[7]} | #{@board[8]} | #{@board[9]}"
+  end
+
   def print_example_board
     [
       "1 | 2 | 3",
@@ -37,6 +45,14 @@ class Board
       "",
       ""
     ]
+  end
+
+  def display_example_board
+    " 1 | 2 | 3 <br>
+      _______<br>
+      4 | 5 | 6<br>
+      _______<br>
+      7 | 8 | 9"
   end
 
   def update_board(position, mark)
