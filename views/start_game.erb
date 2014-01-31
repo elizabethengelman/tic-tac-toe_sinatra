@@ -1,4 +1,7 @@
-<form action="/play_game" method="post">
+Example Board:<br>
+<%=session[:board].display_example_board%>
+<br><br>
+<form action="/first_move" method="post">
 	Which mark would you like to use? <input type="text" name="mark"><br>
 	Would you like to go first or second? 
 	first<input type="radio" name="first_or_second" value="first" required> 

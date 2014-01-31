@@ -1,6 +1,6 @@
 class BrowserUserInterface
   def get_input
-  	# user_input
+  	nil
   end
 
   def print_out(output)

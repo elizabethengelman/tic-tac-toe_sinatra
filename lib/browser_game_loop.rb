@@ -16,6 +16,12 @@ class BrowserGameLoop
 	#   @browser_user_interface.print_out("Thanks for playing! Goodbye!")
 	# end
 
+  def start_new_game
+    create_new_game_pieces
+    @game.reset(@players, @board)
+  end
+
+
 	def play_game(first_or_second)
     create_new_game_pieces
     @game.reset(@players, @board)

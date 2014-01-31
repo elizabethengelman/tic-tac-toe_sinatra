@@ -1,0 +1,9 @@
+You put <%=@position%>
+<br>
+Your mark is <%=session[:player_mark]%>
+
+The computer is playing!
+	<br><br>
+<%=session[:board].display_board%>
+<br><br>
+<a href='/human_move'>Your turn!</a>

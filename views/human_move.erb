@@ -1,0 +1,10 @@
+<br>
+first_or_second:<%=@first_or_second%><br>
+human_mark:<%=@player_mark%><br>
+<%=session[:board].display_board%>
+<br>
+Where would you like to place your mark? 	
+<form action='/human_move' method="post">
+	<input type="number" name="move">
+	<input type="submit">
+</form>	
