@@ -3,7 +3,7 @@ The board is numbered as follows:<br><br>
 <br><br>
 <%if @first_or_second == "first"%>
 	Which mark would you like to use?
-	<form>
+	<form action="/first_more" method="post">
 		<input type="text" name="mark">
 		<input type="submit">
 	</form>	

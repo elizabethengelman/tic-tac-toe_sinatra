@@ -1,5 +1,5 @@
 class BrowserGameLoop
-	attr_reader :board
+	attr_reader :board, :computer, :human_user
 	def initialize(browser_user_interface, game)
 		@browser_user_interface = browser_user_interface
 		@game = game
@@ -28,7 +28,6 @@ class BrowserGameLoop
     current_player_index = browser_who_goes_first?(first_or_second)
     current_player = @players[current_player_index]
     @game.take_a_turn(current_player)
-
   end
     # @game.print_welcome
     
