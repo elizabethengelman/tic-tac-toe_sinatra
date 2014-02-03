@@ -7,13 +7,16 @@ require_relative 'lib/game_loop'
 require_relative 'lib/browser_game_loop'
 require_relative 'lib/computer'
 require_relative 'lib/human_user'
+# require_relative 'helpers/helper_methods'
 
 enable :sessions
 
 before do 
 	@browser_user_interface = BrowserUserInterface.new
 	@game = Game.new(@browser_user_interface)
+	session[:game] = @game
 	@browser_game_loop = BrowserGameLoop.new(@browser_user_interface, @game)
+	@browser_game_loop.start_new_game
 end
 
 get '/' do
@@ -21,11 +24,9 @@ get '/' do
 end
 
 get '/start_game' do
-	@browser_game_loop.start_new_game
 	session[:computer] = @browser_game_loop.computer
 	session[:human_user] = @browser_game_loop.human_user
 	session[:board] = @browser_game_loop.board
-	binding.pry
 	erb :start_game
 end
 
@@ -46,7 +47,6 @@ post '/human_move' do
 	session[:board].update_board(@position, @player_mark)
 	computer_turn = session[:computer].player_turn
 	session[:board].update_board(computer_turn[0], computer_turn[1])
-	binding.pry
 	@game.check_for_winner(session[:human_user], session[:computer])
 	erb :computer_move
 end
