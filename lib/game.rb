@@ -51,14 +51,16 @@ class Game
     @turn_counter +=1
   end
 
-  def check_for_winner(human_user, computer) 
-    @board.possible_wins.each do |line|
-      if @board.times_in_line(line, human_user.mark) == 3
-        human_user_wins
-      elsif @board.times_in_line(line, "O") == 3
-        computer_wins
+  def check_for_winner(board, human_user_mark, computer) 
+    board.possible_wins.each do |line|
+      if board.times_in_line(line, human_user_mark) == 3
+        return human_user_wins
+      elsif board.times_in_line(line, "O") == 3
+        return computer_wins
       elsif @turn_counter == 9
-        tie_game
+        return tie_game
+      else
+        return nil
       end
     end
   end
@@ -69,8 +71,8 @@ class Game
   end
 
   def computer_wins
-    @user_interface.print_out("The computer wins!")
     game_over
+    @user_interface.print_out("The computer wins!")
   end
 
   def human_user_wins

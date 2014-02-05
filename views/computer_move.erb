@@ -7,3 +7,7 @@ The computer is playing!
 <%=session[:board].display_board%>
 <br><br>
 <a href='/human_move'>Your turn!</a>
+
+<br><br>
+<%=@game.check_for_winner(session[:board], @player_mark, @computer)%>
+
