@@ -1,8 +1,7 @@
 require 'pry'
 class Board
   SPACE = " "
-	attr_reader :board
-	attr_reader :possible_wins
+	attr_reader :board, :possible_wins
   
 	def initialize
 		@board = {1 => SPACE, 2 => SPACE, 3 => SPACE, 4 => SPACE, 5 => SPACE, 6 => SPACE, 7 => SPACE, 8 => SPACE, 9 => SPACE} 

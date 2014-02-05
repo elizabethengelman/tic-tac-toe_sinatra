@@ -44,16 +44,18 @@ post '/human_move' do
 	set_up_game_pieces
 	session[:board].update_board(@position, @player_mark)
 	@computer = Computer.new(session[:board], @user_interface, @human_user)	
+	#do I need to reset the computer? should the computer that was created
+	#in the helper method save the session[:board]'s updated state?
 	computer_turn = @computer.player_turn
 	session[:board].update_board(computer_turn[0], computer_turn[1])
-	# @game.check_for_winner(session[:board], @player_mark, @computer)
+	@game.reset([@human_user, @computer], session[:board])
+	@game.check_for_winner(@player_mark, @computer)
 	erb :computer_move
 end
 
 get '/human_move' do
 	erb :human_move
 end
-
 
 
 get '/end_game' do
