@@ -44,7 +44,7 @@ post '/human_move' do
 	set_up_game_pieces
 	session[:board].update_board(@position, @player_mark)
 	@computer = Computer.new(session[:board], @user_interface, @human_user)	
-	computer_turn = @computer.player_turn(human_user_mark)
+	computer_turn = @computer.player_turn
 	session[:board].update_board(computer_turn[0], computer_turn[1])
 	# @game.check_for_winner(session[:board], @player_mark, @computer)
 	erb :computer_move
