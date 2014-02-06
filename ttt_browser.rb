@@ -36,10 +36,11 @@ post '/first_move' do
 		erb :human_move
 	elsif @first_or_second == "second" ## REFACTOR - THIS IS REPETATIVE
 		set_up_game_pieces
-		@computer = Computer.new(session[:board], @user_interface, @human_user)	
-		computer_turn = @computer.player_turn
-		session[:board].update_board(computer_turn[0], computer_turn[1])
-		@game.reset([@human_user, @computer], session[:board])
+		# @computer = Computer.new(session[:board], @user_interface, @human_user)	
+		# computer_turn = @computer.player_turn
+		# session[:board].update_board(computer_turn[0], computer_turn[1])
+		# session[:turn_counter] +=1
+		computer_move
 		erb :computer_move
 	end
 end
@@ -51,6 +52,7 @@ post '/human_move' do
 	computer_move
 	@game.reset([@human_user, @computer], session[:board])
 	@game.turn_counter = session[:turn_counter]
+	game_over?
 	erb :computer_move
 end
 

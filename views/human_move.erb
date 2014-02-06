@@ -1,7 +1,13 @@
 <%=session[:board].display_board%>
 <br>
 Where would you like to place your mark? 	
-<form action='/human_move' method="post">
-	<input type="number" name="move">
+<form name="move_form" action='/human_move' method="post">
+	<input type="number" name="move" min="1" max="9" class="move">
 	<input type="submit">
 </form>
+
+
+
+<%=session[:turn_counter]%>
+
+

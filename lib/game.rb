@@ -59,7 +59,7 @@ class Game
         result =  human_user_wins
       elsif @board.times_in_line(line, "O") == 3
         result = computer_wins
-      elsif @turn_counter == 9 || @turn_counter == 10
+      elsif @turn_counter == 9 || @turn_counter >= 10
         result =  tie_game
       end
     end
