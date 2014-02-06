@@ -49,8 +49,8 @@ post '/human_move' do
 	set_up_game_pieces
 	human_move
 	computer_move
-	# @computer = Computer.new(session[:board], @user_interface, @human_user)	
 	@game.reset([@human_user, @computer], session[:board])
+	@game.turn_counter = session[:turn_counter]
 	erb :computer_move
 end
 

@@ -19,6 +19,10 @@
 </head>
 <body>
   <a href='/end_game'>End the game now</a>
+  <br><br>
+  <%if session[:player_mark]%>
+    Your mark is: <%=session[:player_mark]%>
+  <%end%>
   <div class="container">
     <%= yield %>
   </div>

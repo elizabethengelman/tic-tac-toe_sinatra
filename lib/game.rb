@@ -1,6 +1,7 @@
 class Game
   SPACE = " "
-  attr_reader :board, :turn_counter
+  attr_reader :board
+  attr_accessor :turn_counter
   
   def initialize(user_interface)
     @user_interface = user_interface
@@ -52,19 +53,17 @@ class Game
   end
 
   def check_for_winner(human_user_mark, computer) 
-  winner = ""
+    result = ""
     @board.possible_wins.each do |line|
       if @board.times_in_line(line, human_user_mark) == 3
-        winner =  human_user_wins
+        result =  human_user_wins
       elsif @board.times_in_line(line, "O") == 3
-        puts "gets to the computer wins branch"
-        winner = computer_wins
-      elsif @turn_counter == 9
-        winner =  tie_game
+        result = computer_wins
+      elsif @turn_counter == 9 || @turn_counter == 10
+        result =  tie_game
       end
-
     end
-    winner
+    result
   end
 
   def tie_game
@@ -84,6 +83,6 @@ class Game
   end
 
   def game_over
-    @turn_counter = 10
+    @turn_counter = 11
   end 
 end

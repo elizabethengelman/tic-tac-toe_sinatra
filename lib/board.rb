@@ -27,10 +27,15 @@ class Board
   end
 
   def display_board
+      # @board.each do |key, value|
+      #   if value == SPACE
+      #     @board[key] = "&nbsp;"
+      #   end
+      # end
       "#{@board[1]} | #{@board[2]} | #{@board[3]} <br>
-      _______<br>
+      _____<br>
       #{@board[4]} | #{@board[5]} | #{@board[6]}<br>
-      _______<br>
+      _____<br>
       #{@board[7]} | #{@board[8]} | #{@board[9]}"
   end
 
@@ -66,7 +71,6 @@ class Board
         return 0
       end
     end
-    puts "this is the times in line for #{player_mark}: #{times}"
     times
   end
 

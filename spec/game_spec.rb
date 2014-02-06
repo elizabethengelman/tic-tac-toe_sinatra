@@ -158,14 +158,14 @@ describe Game do
 
 	describe "#check_for_winner" do
     before :each do
-      @game.reset([@human_user, @computer], @board)
+      @game.reset([@human_user.mark, @computer], @board)
     end
 
     it "should print out that the human use won if there are 3 X's in a row" do
       @game.board.update_board(1,"X")
       @game.board.update_board(2,"X")
       @game.board.update_board(3,"X")
-      @game.check_for_winner(@human_user, @computer)
+      @game.check_for_winner(@human_user.mark, @computer)
     	@mock_user_interface.print_out_array[0].should eq "Oops, it looks like you win!  That wasn't supposed to happen :|"
     end
 
@@ -173,13 +173,13 @@ describe Game do
       @game.board.update_board(1,"O")
       @game.board.update_board(2,"O")
       @game.board.update_board(3,"O")
-    	@game.check_for_winner(@human_user, @computer)
+    	@game.check_for_winner(@human_user.mark, @computer)
     	@mock_user_interface.print_out_array[0].should eq "The computer wins!"
     end
 
     it "should print out that it is a tied game" do
       @game.turn_counter = 9
-      @game.check_for_winner(@human_user, @computer)
+      @game.check_for_winner(@human_user.mark, @computer)
       @mock_user_interface.print_out_array[0].should eq "You've tied!"
     end
   end

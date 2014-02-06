@@ -1,17 +1,11 @@
-You put <%=@position%>
-<br>
-Your mark is <%=session[:player_mark]%>
-
-The computer is playing!
-	<br><br>
+The computer just played!
+<br><br>
 <%=session[:board].display_board%>
 <br><br>
 <a href='/human_move'>Your turn!</a>
 
 <br><br>
-
 	<%=@game.check_for_winner(session[:player_mark], @computer)%>
-
 <br><br>
 Turn Counter:
 <%=session[:turn_counter]%>

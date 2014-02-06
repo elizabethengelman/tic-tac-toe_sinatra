@@ -28,7 +28,7 @@ class GameLoop
 	    @game.take_a_turn(current_player)
       current_player_index = (current_player_index + 1) % 2
       @game.change_turn
-      @game.check_for_winner(@human_user, @computer)
+      @game.check_for_winner(@human_user.mark, @computer)
     end
   end
 
