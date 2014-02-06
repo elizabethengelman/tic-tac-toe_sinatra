@@ -28,4 +28,15 @@ helpers do
 			session[:turn_counter] = 10
 		end
 	end
+
+	def list_available_moves
+		available_moves_array = []
+		session[:board].board.each do |key, value|
+	
+			if value == " "
+				available_moves_array << key
+			end
+		end
+		available_moves_array
+	end
 end

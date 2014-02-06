@@ -33,6 +33,7 @@ post '/first_move' do
 	@player_mark = params[:mark]
 	session[:player_mark] = @player_mark
 	if @first_or_second == "first"
+		@available_moves = list_available_moves
 		erb :human_move
 	elsif @first_or_second == "second" ## REFACTOR - THIS IS REPETATIVE
 		set_up_game_pieces
@@ -53,10 +54,12 @@ post '/human_move' do
 	@game.reset([@human_user, @computer], session[:board])
 	@game.turn_counter = session[:turn_counter]
 	game_over?
+	
 	erb :computer_move
 end
 
 get '/human_move' do
+	@available_moves = list_available_moves
 	erb :human_move
 end
 

@@ -1,13 +1,39 @@
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+var availableMoves = [<%= @available_moves.map(&:to_s).join(", ") %>];
+
+$("#move_form").submit(function(e){
+	
+	var userInput = parseInt($(".move").val())
+
+	console.log(availableMoves)
+	console.log("test")
+	console.log(userInput)
+	console.log(typeof userInput)
+	if(availableMoves.indexOf(userInput) == -1)
+			{
+			e.preventDefault();
+			alert("Sorry, this is not a valid move. Please try again.");
+			console.log(userInput)
+			console.log(availableMoves)
+		}
+	});
+});
+
+
+</script>
+
+
 <%=session[:board].display_board%>
 <br>
 Where would you like to place your mark? 	
-<form name="move_form" action='/human_move' method="post">
+<form id="move_form" action='/human_move' method="post">
 	<input type="number" name="move" min="1" max="9" class="move">
-	<input type="submit">
+	<input type="submit" id="form_submit" name="submit_btn">
 </form>
 
-
-
-<%=session[:turn_counter]%>
-
+Available Moves:
+<%=@available_moves%>
 
