@@ -9,6 +9,9 @@ The computer is playing!
 <a href='/human_move'>Your turn!</a>
 
 <br><br>
-<%if @game.check_for_winner(session[:player_mark], @computer) == "The computer wins!"%>
+
 	<%=@game.check_for_winner(session[:player_mark], @computer)%>
-<%end%>
+
+<br><br>
+Turn Counter:
+<%=session[:turn_counter]%>

@@ -14,7 +14,6 @@ enable :sessions
 before do 
 	@browser_user_interface = BrowserUserInterface.new
 	@game = Game.new(@browser_user_interface)
-	session[:game] = @game
 	@browser_game_loop = BrowserGameLoop.new(@browser_user_interface, @game)
 	@browser_game_loop.start_new_game
 end
@@ -25,6 +24,7 @@ end
 
 get '/start_game' do
 	session[:board] = @browser_game_loop.board
+	session[:turn_counter] = @game.turn_counter
 	erb :start_game
 end
 
@@ -34,7 +34,12 @@ post '/first_move' do
 	session[:player_mark] = @player_mark
 	if @first_or_second == "first"
 		erb :human_move
-	elsif @first_or_second == "second"
+	elsif @first_or_second == "second" ## REFACTOR - THIS IS REPETATIVE
+		set_up_game_pieces
+		@computer = Computer.new(session[:board], @user_interface, @human_user)	
+		computer_turn = @computer.player_turn
+		session[:board].update_board(computer_turn[0], computer_turn[1])
+		@game.reset([@human_user, @computer], session[:board])
 		erb :computer_move
 	end
 end
@@ -42,14 +47,10 @@ end
 post '/human_move' do
 	@position = params[:move].to_i
 	set_up_game_pieces
-	session[:board].update_board(@position, @player_mark)
-	@computer = Computer.new(session[:board], @user_interface, @human_user)	
-	#do I need to reset the computer? should the computer that was created
-	#in the helper method save the session[:board]'s updated state?
-	computer_turn = @computer.player_turn
-	session[:board].update_board(computer_turn[0], computer_turn[1])
+	human_move
+	computer_move
+	# @computer = Computer.new(session[:board], @user_interface, @human_user)	
 	@game.reset([@human_user, @computer], session[:board])
-	@game.check_for_winner(@player_mark, @computer)
 	erb :computer_move
 end
 

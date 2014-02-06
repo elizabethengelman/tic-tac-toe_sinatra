@@ -66,7 +66,8 @@ class Board
         return 0
       end
     end
-    times  
+    puts "this is the times in line for #{player_mark}: #{times}"
+    times
   end
 
   def empty_in_line(poss_winning_line)

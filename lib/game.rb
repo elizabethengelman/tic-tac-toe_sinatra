@@ -52,25 +52,24 @@ class Game
   end
 
   def check_for_winner(human_user_mark, computer) 
-
-    puts "this is the board:"
-    puts @board.board
+  winner = ""
     @board.possible_wins.each do |line|
       if @board.times_in_line(line, human_user_mark) == 3
-        return human_user_wins
+        winner =  human_user_wins
       elsif @board.times_in_line(line, "O") == 3
-        return computer_wins
+        puts "gets to the computer wins branch"
+        winner = computer_wins
       elsif @turn_counter == 9
-        return tie_game
-      else
-        nil
+        winner =  tie_game
       end
+
     end
+    winner
   end
 
   def tie_game
-    @user_interface.print_out("You've tied!")
     game_over
+    @user_interface.print_out("You've tied!")
   end
 
   def computer_wins
