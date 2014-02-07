@@ -59,7 +59,8 @@ class Game
         result =  human_user_wins
       elsif @board.times_in_line(line, "O") == 3
         result = computer_wins
-      elsif @turn_counter == 9 || @turn_counter >= 10
+      elsif @turn_counter == 9 || @turn_counter == 10
+        puts "its in the tie branch"
         result =  tie_game
       end
     end
@@ -67,7 +68,7 @@ class Game
   end
 
   def tie_game
-    game_over
+    
     @user_interface.print_out("You've tied!")
   end
 

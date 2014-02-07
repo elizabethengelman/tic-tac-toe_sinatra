@@ -14,10 +14,7 @@ helpers do
 	end	
 
 	def computer_move #should something like this be part of the browser loop instead?
-		
 		@computer = Computer.new(session[:board], @user_interface, @human_user)	
-		#do I need to reset the computer? should the computer that was created
-		#in the helper method save the session[:board]'s updated state?
 		computer_turn = @computer.player_turn
 		session[:board].update_board(computer_turn[0], computer_turn[1])  ## REFACTOR - THIS IS REPETATIVE
 		session[:turn_counter] +=1
@@ -32,7 +29,6 @@ helpers do
 	def list_available_moves
 		available_moves_array = []
 		session[:board].board.each do |key, value|
-	
 			if value == " "
 				available_moves_array << key
 			end

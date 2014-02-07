@@ -33,7 +33,6 @@ Where would you like to place your mark?
 	<input type="number" name="move" min="1" max="9" class="move">
 	<input type="submit" id="form_submit" name="submit_btn">
 </form>
-
-Available Moves:
-<%=@available_moves%>
+Turn Counter:
+<%=session[:turn_counter]%>
 
