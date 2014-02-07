@@ -60,7 +60,6 @@ class Game
       elsif @board.times_in_line(line, "O") == 3
         result = computer_wins
       elsif @turn_counter == 9 || @turn_counter == 10
-        puts "its in the tie branch"
         result =  tie_game
       end
     end

@@ -8,15 +8,14 @@ helpers do
 	end
 
 	def human_move
-		puts "this is a valid move? #{session[:board].valid_move?(@position)}"
 		session[:board].update_board(@position, @player_mark)
 		session[:turn_counter] +=1
 	end	
 
-	def computer_move #should something like this be part of the browser loop instead?
+	def computer_move 
 		@computer = Computer.new(session[:board], @user_interface, @human_user)	
 		computer_turn = @computer.player_turn
-		session[:board].update_board(computer_turn[0], computer_turn[1])  ## REFACTOR - THIS IS REPETATIVE
+		session[:board].update_board(computer_turn[0], computer_turn[1]) 
 		session[:turn_counter] +=1
 	end
 

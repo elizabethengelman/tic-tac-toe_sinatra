@@ -35,12 +35,8 @@ post '/first_move' do
 	if @first_or_second == "first"
 		@available_moves = list_available_moves
 		erb :human_move
-	elsif @first_or_second == "second" ## REFACTOR - THIS IS REPETATIVE
+	elsif @first_or_second == "second" 
 		set_up_game_pieces
-		# @computer = Computer.new(session[:board], @user_interface, @human_user)	
-		# computer_turn = @computer.player_turn
-		# session[:board].update_board(computer_turn[0], computer_turn[1])
-		# session[:turn_counter] +=1
 		computer_move
 		erb :computer_move
 	end

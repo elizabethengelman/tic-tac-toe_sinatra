@@ -28,7 +28,6 @@ class Board
   end
 
   def display_board
-    puts "this is the board that is being updated #{@board}"
       @board.each do |key, value|
         if value == SPACE
           @board[key] = EMPTY
