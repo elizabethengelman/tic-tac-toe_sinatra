@@ -26,13 +26,12 @@ $("#move_form").submit(function(e){
 </script>
 
 
-<%=session[:board].display_board%>
-<br>
+<div class="board_display"><%=session[:board].display_board%></div>
+<br><br>
 Where would you like to place your mark? 	
+
+<br><br>
 <form id="move_form" action='/human_move' method="post">
 	<input type="number" name="move" min="1" max="9" class="move">
 	<input type="submit" id="form_submit" name="submit_btn">
 </form>
-Turn Counter:
-<%=session[:turn_counter]%>
-

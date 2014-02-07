@@ -1,6 +1,7 @@
 require 'pry'
 class Board
   SPACE = " "
+  EMPTY = "&nbsp;"
 	attr_reader :board, :possible_wins
   
 	def initialize
@@ -27,11 +28,12 @@ class Board
   end
 
   def display_board
-      # @board.each do |key, value|
-      #   if value == SPACE
-      #     @board[key] = "&nbsp;"
-      #   end
-      # end
+    puts "this is the board that is being updated #{@board}"
+      @board.each do |key, value|
+        if value == SPACE
+          @board[key] = EMPTY
+        end
+      end
       "#{@board[1]} | #{@board[2]} | #{@board[3]} <br>
       _____<br>
       #{@board[4]} | #{@board[5]} | #{@board[6]}<br>
@@ -67,7 +69,7 @@ class Board
     times = 0
     poss_winning_line.each do |index|
       times += 1 if @board[index] == player_mark
-      unless @board[index] == player_mark || @board[index] == SPACE
+      unless @board[index] == player_mark || @board[index] == SPACE || board[index] == EMPTY
         return 0
       end
     end
@@ -76,13 +78,13 @@ class Board
 
   def empty_in_line(poss_winning_line)
     poss_winning_line.each do |index|
-      if @board[index] == SPACE
+      if @board[index] == SPACE || @board[index] == EMPTY
         return index
       end
     end
   end
 
   def valid_move?(index)
-    @board[index] == SPACE
+    @board[index] == SPACE || @board[index] == EMPTY
   end
 end

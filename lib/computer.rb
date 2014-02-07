@@ -1,5 +1,6 @@
 class Computer
   SPACE = " "
+  EMPTY = "&nbsp;"
   
 	def initialize(board, user_interface, human_user)
 		@board = board
@@ -16,7 +17,7 @@ class Computer
 
   def player_turn
     @user_interface.print_out("The computer is playing...")
-    if @board.board[5] == SPACE
+    if @board.board[5] == SPACE || @board.board[5] == EMPTY
       position = 5
     else
       position = find_computer_move

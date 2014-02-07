@@ -29,7 +29,7 @@ helpers do
 	def list_available_moves
 		available_moves_array = []
 		session[:board].board.each do |key, value|
-			if value == " "
+			if value == "&nbsp;" || value == " " 
 				available_moves_array << key
 			end
 		end

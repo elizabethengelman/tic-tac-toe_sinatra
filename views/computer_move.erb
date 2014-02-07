@@ -1,16 +1,13 @@
-The computer just played!
+The computer just played...
 <br><br>
-<%=session[:board].display_board%>
+<div class="board_display"><%=session[:board].display_board%></div>
 <br><br>
 <%=@game.check_for_winner(session[:player_mark], @computer)%>
-<br><br>
 <%if session[:turn_counter] < 9%>
 	<a href='/human_move'>Your turn!</a>
 <%else%>
-	Game over! Would you like to play again?
+	<br><br>
+	Game over! Would you like to play again?<br><br>
 	<a href='/start_game'>Yes</a>
 	<a href='/'>No</a>
 <%end%>
-
-Turn Counter:
-<%=session[:turn_counter]%>
