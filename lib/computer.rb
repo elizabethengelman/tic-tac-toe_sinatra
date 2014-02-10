@@ -1,6 +1,7 @@
 class Computer
   SPACE = " "
   EMPTY = "&nbsp;"
+  attr_reader :computer_mark
   
 	def initialize(board, user_interface, human_user)
 		@board = board

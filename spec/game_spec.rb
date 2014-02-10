@@ -106,16 +106,24 @@ describe Game do
 		end
 	end
 
-	describe "#in_progress?" do
-		it "returns true if the turn_counter is less than 10" do
+	describe "#over?" do
+		it "returns false the board is empty" do
 			@game.reset([@human_user, @computer], @board)
-			@game.in_progress?.should eq true
+			@game.over?.should eq false
 		end
 
-		it "returns false if the turn_counter is greater than or equal to 10" do
+		it "returns false if the game is still in progress" do
 			@game.reset([@human_user, @computer], @board)
-			10.times {@game.change_turn}
-			@game.in_progress?.should eq false
+			@game.board.update_board(1, "X")
+			@game.over?.should eq false
+		end
+
+		it "returns true if the game is over" do
+			@game.reset([@human_user, @computer], @board)
+			@game.board.board.each do |key, value|
+    		@game.board.update_board(key,key)
+    	end
+			@game.over?.should eq true
 		end
 	end
 
@@ -178,7 +186,9 @@ describe Game do
     end
 
     it "should print out that it is a tied game" do
-      @game.turn_counter = 9
+    	@game.board.board.each do |key, value|
+    		@game.board.update_board(key,key)
+    	end
       @game.check_for_winner(@human_user.mark, @computer)
       @mock_user_interface.print_out_array[0].should eq "You've tied!"
     end
@@ -189,6 +199,38 @@ describe Game do
 			@game.game_over
 			@game.turn_counter.should eq 11
 		end	
+	end
+
+	context "to delete" do
+		before :each do
+		   @game.reset([@human_user.mark, @computer], @board)
+		end
+
+		it "returns x when x marks the first row" do	
+			(1..3).each do |number|
+				@game.board.update_board(number, "X")
+			end
+			@game.winner.should eq "X"
+		end
+
+		it "returns nil when there is no winner" do
+			@game.winner.should eq nil
+		end
+
+		it "returns O when O marks the second row" do
+			(4..6).each do |number|
+				@game.board.update_board(number, "O")
+			end
+			@game.winner.should eq "O"
+		end
+
+
+		it "returns winner when player marks diagonal" do
+			[1, 5, 9].each do |number|
+				@game.board.update_board(number, "C")
+			end
+			@game.winner.should eq "C"
+		end
 	end
 end
 

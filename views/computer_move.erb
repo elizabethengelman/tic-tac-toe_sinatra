@@ -3,7 +3,7 @@ The computer just played...
 <div class="board_display"><%=session[:board].display_board%></div>
 <br><br>
 <%=@game.check_for_winner(session[:player_mark], @computer)%>
-<%if session[:turn_counter] < 9%>
+<%if @game.over? == false || @game.over? == "&nbsp;"%>
 	<a href='/human_move'>Your turn!</a>
 <%else%>
 	<br><br>

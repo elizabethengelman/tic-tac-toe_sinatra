@@ -28,11 +28,11 @@ class Game
   def take_a_turn(player) 
     move = player.player_turn
     @board.update_board(move[0],move[1])
-    print_board #this should not be a part of take_a_turn??
+    print_board 
   end
   
-  def in_progress?
-    @turn_counter < 9
+  def over?
+    winner || @board.full?
   end
  
   def who_goes_first?
@@ -46,7 +46,7 @@ class Game
         return 1
       end
     end
-  end
+    end
 
   def change_turn
     @turn_counter +=1
@@ -54,20 +54,33 @@ class Game
 
   def check_for_winner(human_user_mark, computer) 
     result = ""
-    @board.possible_wins.each do |line|
-      if @board.times_in_line(line, human_user_mark) == 3
-        result =  human_user_wins
-      elsif @board.times_in_line(line, "O") == 3
+    winner_mark = winner
+    if winner == human_user_mark
+      result = human_user_wins
+    elsif winner == computer.computer_mark
         result = computer_wins
-      elsif @turn_counter == 9 || @turn_counter == 10
-        result =  tie_game
-      end
+    elsif @board.full?
+      result =  tie_game
     end
     result
   end
 
-  def tie_game
-    
+  def winner
+    @board.possible_wins.each do |line|
+      first_value = @board.value(line.first)
+      if (first_value != SPACE) && same_mark_in_line?(line)
+        return first_value
+      end
+    end
+    nil
+  end
+
+  def same_mark_in_line?(line)
+    value = @board.value(line.first)
+    @board.values(line).all? {|v| v == value}
+  end
+ 
+  def tie_game    
     @user_interface.print_out("You've tied!")
   end
 
@@ -79,7 +92,6 @@ class Game
   def human_user_wins
     game_over
     @user_interface.print_out("Oops, it looks like you win!  That wasn't supposed to happen :|")
-    
   end
 
   def game_over

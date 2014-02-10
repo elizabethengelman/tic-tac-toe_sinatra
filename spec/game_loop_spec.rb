@@ -42,6 +42,10 @@ class MockGame
 		@reset_called = true
 	end
 
+	def over?
+		!in_progress?
+	end
+
 	def print_welcome
 		@print_welcome_called = true
 	end

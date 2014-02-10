@@ -49,7 +49,7 @@ post '/human_move' do
 	computer_move
 	@game.reset([@human_user, @computer], session[:board])
 	@game.turn_counter = session[:turn_counter]
-	game_over?
+	# game_over?
 	
 	erb :computer_move
 end

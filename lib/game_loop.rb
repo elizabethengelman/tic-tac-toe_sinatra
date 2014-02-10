@@ -23,7 +23,7 @@ class GameLoop
     current_player_index = @game.who_goes_first?
     assign_player_marks
     @game.print_example_board
-    while @game.in_progress?
+    until @game.over?
 			current_player = @players[current_player_index]
 	    @game.take_a_turn(current_player)
       current_player_index = (current_player_index + 1) % 2

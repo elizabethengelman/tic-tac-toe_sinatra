@@ -17,6 +17,10 @@ class Board
                      ] 
   end	
 
+  def full?
+    !(@board.has_value?(SPACE) || @board.has_value?(EMPTY))
+  end
+
   def print_board
     [
       "#{@board[1]} | #{@board[2]} | #{@board[3]}",
@@ -64,15 +68,23 @@ class Board
     @board[position] = mark
   end
 
-   def times_in_line(poss_winning_line, player_mark)
+  #  def times_in_line(poss_winning_line, player_mark)
+  #   counter = 0;
+  #   poss_winning_line.each do |position| 
+  #     counter += 1 if @board[position] == player_mark
+  #   end
+  #   counter
+  # end
+
+    def times_in_line(poss_winning_line, player_mark)
     times = 0
     poss_winning_line.each do |index|
       times += 1 if @board[index] == player_mark
-      unless @board[index] == player_mark || @board[index] == SPACE || board[index] == EMPTY
+      unless @board[index] == player_mark || @board[index] == SPACE || @board[index] == EMPTY
         return 0
       end
     end
-    times
+    times  
   end
 
   def empty_in_line(poss_winning_line)
@@ -85,5 +97,13 @@ class Board
 
   def valid_move?(index)
     @board[index] == SPACE || @board[index] == EMPTY
+  end
+
+  def value(position)
+    @board[position]
+  end
+
+  def values(line)
+    line.map {|position| @board[position]}
   end
 end

@@ -19,12 +19,6 @@ helpers do
 		session[:turn_counter] +=1
 	end
 
-	def game_over?
-		if @game.check_for_winner(session[:player_mark], @computer) == "The computer wins!" || @game.check_for_winner(session[:player_mark], @computer) == "Oops, it looks like you win!  That wasn't supposed to happen :|" 
-			session[:turn_counter] = 10
-		end
-	end
-
 	def list_available_moves
 		available_moves_array = []
 		session[:board].board.each do |key, value|
