@@ -68,15 +68,7 @@ class Board
     @board[position] = mark
   end
 
-  #  def times_in_line(poss_winning_line, player_mark)
-  #   counter = 0;
-  #   poss_winning_line.each do |position| 
-  #     counter += 1 if @board[position] == player_mark
-  #   end
-  #   counter
-  # end
-
-    def times_in_line(poss_winning_line, player_mark)
+  def times_in_line(poss_winning_line, player_mark)
     times = 0
     poss_winning_line.each do |index|
       times += 1 if @board[index] == player_mark
